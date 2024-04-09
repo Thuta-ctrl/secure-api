@@ -48,7 +48,9 @@ const onSubmit = async(e) => {
     e.preventDefault()
     if (info.email && info.password) {
       const res = await AuthStore.login(info)
+      localStorage.setItem('isAuthenticated', true)
       AuthStore.token = res.data?.token
+      AuthStore.isAuthenticated = true
       router.push({name: 'home'})
     }
   } catch (error) {

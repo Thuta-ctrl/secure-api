@@ -11,5 +11,7 @@ export const requiredAuth = async(to, from, next) => {
 }
 
 export const notRequiredAuth = async(to, from, next) => {
-  next()
+  const AuthStore = useAuthStore()
+  if (AuthStore.isAuthenticated) next(from.path)
+  else next()
 }
